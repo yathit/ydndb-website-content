@@ -1,0 +1,150 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.sugarcrm.model.Field"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 1
+collection: "ydn.crm"
+namespace: "ydn.crm.sugarcrm.model"
+
+---
+
+
+<h2 class="classTitle">Class ydn.crm.sugarcrm.model.Field</h2>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.model.Field</b>(parent, field_name) </div>
+  <div class="description"> Create a new Field Model.</div>
+</summary>
+  <div class="details">
+    <div class="details">
+      <dt class="heading">Parameters:</dt>
+      <dt><span class="light fixedFont">{ydn.crm.sugar.model.Group}</span> <b>parent</b></dt>
+      <dd>SugarCRM parent.</dd>
+      <dt><span class="light fixedFont">{string}</span> <b>field_name</b></dt>
+      <dd>Field name.</dd>
+    </div>
+  </div>
+</details>
+<div class="sectionTitle"> Methods </div>
+
+
+<hr> <details><summary> <a name="getFieldValue"></a>
+  <div class="fixedFont"> <b>getFieldValue</b>() </div>
+  <div class="description"> Get field value. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{?string}</span> field value.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getFieldInfo"></a>
+  <div class="fixedFont"> <b>getFieldInfo</b>() </div>
+  <div class="description"> Get field Information. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{SugarCrm.ModuleField}</span>Field Information. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getGroupName"></a>
+  <div class="fixedFont"> <b>getGroupName</b>() </div>
+  <div class="description"> Get group name. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>Group name. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getLabel"></a>
+  <div class="fixedFont"> <b>getLabel</b>() </div>
+  <div class="description"> Get field label. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>Field label. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getModuleName"></a>
+  <div class="fixedFont"> <b>getModuleName</b>() </div>
+  <div class="description"> Get module name. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{ydn.crm.sugar.ModuleName}</span>Record module name.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="hasField"></a>
+  <div class="fixedFont"> <b>hasField</b>() </div>
+  <div class="description"> Check field exists in module information. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{boolean}</span>`true` if field value exist in module information.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="getOptions"></a>
+  <div class="fixedFont"> <b>getOptions</b>() </div>
+  <div class="description"> Get SugarCRM field options. </div>
+</summary>
+  <p>Enum fields has options, such as 'Mr', 'Mrs', in <code>salutation</code> field.</p>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{!Object.&lt;SugarCrm.NameValue&gt;}</span> Field options.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getType"></a>
+  <div class="fixedFont"> <b>getType</b>() </div>
+  <div class="description"> Get field type. </div>
+</summary>
+  <p>Return as defined in Field Information.</p>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span> Field type, if not defined default to 'varchar'.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="isCalculated"></a>
+  <div class="fixedFont"> <b>isCalculated</b>() </div>
+  <div class="description"> Check the field value is calculated or not. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{boolean}</span> <code>true</code> if backend calculated field.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="patch"></a>
+  <div class="fixedFont"> <b>patch</b>(patches) </div>
+  <div class="description"> Get the patch object for given user input field value. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{Object}</span> <b>patches</b></dt>
+    <dd>field name-value pair as Object.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{?Object}</span>`null` if patch is not necessary. </dd>
+  </dl>
+</details>
+
+<br /><div class="g-comments"></div>

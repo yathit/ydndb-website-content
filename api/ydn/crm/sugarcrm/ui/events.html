@@ -1,0 +1,87 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.sugarcrm.ui.events"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 1
+collection: "ydn.crm"
+namespace: "ydn.crm.sugarcrm.ui"
+
+---
+
+
+<h2 class="classTitle">Namespace ydn.crm.sugarcrm.ui.events</h2>
+<p>Events dispatched in <code>ydn.crm.sugarcrm.ui</code> package.</p>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.ui.events.ChangedEvent</b>(patches, opt_event_target) </div>
+  <div class="description"> Create a new input field value changed event.</div>
+</summary>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{Object}</span> <b>patches</b></dt>
+    <dd>Changes.</dd>
+    <dt><span class="light fixedFont">{Object=}</span> <b>opt_event_target</b></dt>
+    <dd>event target.</dd>
+  </div>
+</details>
+<div class="sectionTitle"> Property </div>
+
+ <details><summary> <a name="patches"></a>
+  <div class="fixedFont"> <b>patches</b> </div>
+  <div class="description"> Field name-value pair of user changes. </div>
+</summary>
+</details>
+
+<hr/>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.ui.events.FieldMenuActionEvent</b>(command, opt_event_target) </div>
+  <div class="description"> Create a new FieldMenuActionEvent.</div>
+</summary>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{ydn.crm.sugarcrm.model.Field.Command}</span> <b>command</b></dt>
+    <dd>action command.</dd>
+    <dt><span class="light fixedFont">{Object=}</span> <b>opt_event_target</b></dt>
+    <dd>event target.</dd>
+  </div>
+</details>
+<div class="sectionTitle"> Property </div>
+
+<details><summary> <a name="command"></a>
+  <div class="fixedFont"><span class="light fixedFont">{ydn.crm.sugarcrm.model.Field.Command}</span> <b>command</b> </div>
+  <div class="description"> action command. </div>
+</summary>
+</details>
+
+
+<hr/>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.ui.events.NewRecord</b>(name, opt_event_target) </div>
+  <div class="description"> Create a new NewRecord event.</div>
+</summary>
+  <p>Event for sugar models.</p>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{ydn.crm.sugarcrm.ModuleName}</span> <b>name</b></dt>
+    <dd>new record module name.</dd>
+    <dt><span class="light fixedFont">{Object=}</span> <b>opt_event_target</b></dt>
+    <dd>event target.</dd>
+  </div>
+</details>
+<div class="sectionTitle"> Property </div>
+
+<details><summary> <a name="module_name"></a>
+  <div class="fixedFont"><span class="light fixedFont">{ydn.crm.sugarcrm.ModuleName}</span> <b>module_name</b> </div>
+  <div class="description"> new record module name. </div>
+</summary>
+</details>
+
+
+<br /><div class="g-comments"></div>

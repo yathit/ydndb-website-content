@@ -1,0 +1,177 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.sugarcrm.Record"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 1
+collection: "ydn.crm"
+namespace: "ydn.crm.sugarcrm"
+
+---
+
+
+<h2 class="classTitle">Class ydn.crm.sugarcrm.Record</h2>
+<p>SugarCRM Record wrapper object.</p>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.Record</b>(domain, module, opt_obj) </div>
+  <div class="description"> Create a new Record </div>
+</summary>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{string}</span> <b>domain</b></dt>
+    <dd>SugarCRM instance identifier as domain name, eg: "fjochv4737.trial.sugarcrm.eu".</dd>
+    <dt><span class="light fixedFont">{ydn.crm.sugar.ModuleName}</span> <b>module</b></dt>
+    <dd>Module name.</dd>
+    <dt><span class="light fixedFont">{SugarCrm.Record=}</span> <b>opt_obj</b></dt>
+    <dd>SugarCRM record entry.</dd>
+  </div>
+</details>
+<div class="sectionTitle"> Methods </div>
+
+
+<hr> <details><summary> <a name="getData"></a>
+  <div class="fixedFont"> <b>getData</b>() </div>
+  <div class="description"> Get record raw data. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{?SugarCrm.Record}</span> Record raw data. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getId"></a>
+  <div class="fixedFont"> <b>getId</b>() </div>
+  <div class="description"> Get record Id, as generated from SugarCRM. </div>
+</summary>
+  <dt class="heading">Throws:</dt>
+  <dt><span class="light fixedFont">{Error}</span><b>
+    Error</b></dt>
+  <dd>If id was not set.</dd>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>Record id.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getDomain"></a>
+  <div class="fixedFont"> <b>getDomain</b>() </div>
+  <div class="description"> Get sugarcrm domain. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>sugarcrm domain.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="getLabel"></a>
+  <div class="fixedFont"> <b>getLabel</b>() </div>
+  <div class="description"> Get suitable label for the record. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>label. </dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="getModule"></a>
+  <div class="fixedFont"> <b>getModule</b>() </div>
+  <div class="description"> Get module name. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{ydn.crm.sugar.ModuleName}</span>module name. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getUpdated"></a>
+  <div class="fixedFont"> <b>getUpdated</b>() </div>
+  <div class="description"> Get record modified date. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{ydn.crm.sugar.ModuleName}</span>date time stamp. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="setData"></a>
+  <div class="fixedFont"> <b>setData</b>(obj) </div>
+  <div class="description"> Set record data. </div>
+</summary>
+  <p>Record must have a valid id, if data is not null.</p>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{?SugarCrm.Record}</span> <b>obj</b></dt>
+    <dd>field name.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="setValue"></a>
+  <div class="fixedFont"> <b>setValue</b>(name, value) </div>
+  <div class="description"> Set a field value.  </div>
+</summary>
+  <p>If record value is not exist, it will be initialize with empty object.</p>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{string}</span> <b>name</b></dt>
+    <dd>field name.</dd>
+    <dt><span class="light fixedFont">{*}</span> <b>value</b></dt>
+    <dd>field value.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="toJSON"></a>
+  <div class="fixedFont"> <b>toJSON</b>() </div>
+  <div class="description"> Get serialized object. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{!Object}</span>serialized object. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="value"></a>
+  <div class="fixedFont"> <b>value</b>(name) </div>
+  <div class="description"> Get record field value. </div>
+</summary>
+  Note: Newer bean format many return as Object or array of Objects.
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{SugarCrm.Record}</span> <b>name</b></dt>
+    <dd>field name.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{?string}</span>field value. </dd>
+  </dl>
+</details>
+
+<div class="sectionTitle">Static Methods </div>
+
+<details><summary> <a name="fromJSON"></a>
+  <div class="fixedFont"> <b>fromJSON</b>(json) </div>
+  <div class="description"> Deserialize JSON object.</div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{!Object}</span> <b>json</b></dt>
+    <dd>Field name.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{!ydn.crm.sugar.Record}</span>Deserialize record. </dd>
+  </dl>
+</details>
+
+<br /><div class="g-comments"></div>

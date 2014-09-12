@@ -1,0 +1,111 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.sugarcrm.ui.record.Record"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 1
+collection: "ydn.crm"
+namespace: "ydn.crm.sugarcrm.ui.record"
+
+---
+
+
+<h2 class="classTitle">Class ydn.crm.sugarcrm.ui.record.Record</h2>
+<p>SugarCRM Record wrapper object.</p>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.ui.record.Record</b>(model, opt_dom, opt_parent) </div>
+  <div class="description"> Create a new Record Panel</div>
+</summary>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{ydn.crm.sugarcrm.model.Record}</span> <b>model</b></dt>
+    <dd>SugarCRM record model.</dd>
+    <dt><span class="light fixedFont">{goog.dom.DomHelper=}</span> <b>opt_dom</b></dt>
+    <dd>DomHelper.</dd>
+    <dt><span class="light fixedFont">{<a href="../../model/record.html">ydn.crm.sugarcrm.ui.record.Record</a>=}</span> <b>opt_parent</b></dt>
+    <dd>parent panel for if child record panel.</dd>
+  </div>
+</details>
+<div class="sectionTitle"> Methods </div>
+
+
+<hr> <details><summary> <a name="fillByMetaContact"></a>
+  <div class="fixedFont"> <b>fillByMetaContact</b>(meta) </div>
+  <div class="description"> Fill up by meta contact data. </div>
+</summary>
+  <p>Fill up record by social network data.</p>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{ydn.social.MetaContact}</span> <b>meta</b></dt>
+    <dd>meta contact data.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="getDirty"></a>
+  <div class="fixedFont"> <b>getDirty</b>() </div>
+  <div class="description"> Get record is dirty. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{boolean}</span> <code>true</code> if user is edited. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getUpdatedValue"></a>
+  <div class="fixedFont"> <b>getUpdatedValue</b>() </div>
+  <div class="description"> Get user updated record value, if edited. </div>
+</summary>
+  <p>Original record data is updated with UI edited value. If user is not edited, <code>null</code> is return instead.</p>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{?SugarCrm.Record}</span>collected data, <code>null</code> if record value is not updated. </dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="patch"></a>
+  <div class="fixedFont"> <b>patch</b>(patches) </div>
+  <div class="description"> Patch record and update to server. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{Object}</span> <b>patches</b></dt>
+    <dd>Field name-value pairs to patch the record data.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{!goog.async.Deferred.&lt;SugarCrm.Record&gt;}</span>Resolved with record object as return from the server.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="setEditMode"></a>
+  <div class="fixedFont"> <b>setEditMode</b>(val) </div>
+  <div class="description"> Change edit mode status. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{boolean}</span> <b>val</b></dt>
+    <dd> <code>true</code> to edit mode, <code>false</code> to view mode.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="simulateEdit"></a>
+  <div class="fixedFont"> <b>simulateEdit</b>(user_patch, opt_dispatch_event) </div>
+  <div class="description"> Simulate user edit. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{Object}</span> <b>user_patch</b></dt>
+    <dd> patch object of field name and its value, of user edited.</dd>
+    <dt><span class="light fixedFont">{boolean=}</span> <b>opt_dispatch_event</b></dt>
+    <dd> dispatch change event.</dd>
+  </dl>
+</details>
+
+
+<br /><div class="g-comments"></div>

@@ -1,0 +1,77 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.inj.Context"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 2
+collection: "ydn.crm"
+namespace: "ydn.crm.inj"
+
+---
+
+
+<h2 class="classTitle">Class ydn.crm.inj.Context</h2>
+<p>Encapsulate gmail context data of main contact.</p>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+  <div class="fixedFont"> <b>ydn.crm.inj.App</b>(gdata_account, email, full_name) </div>
+  <div class="description"> Create a new Model.</div>
+</summary>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{string}</span> <b>gdata_account</b></dt>
+    <dd>Gmail account.</dd>
+    <dt><span class="light fixedFont">{string}</span> <b>email</b></dt>
+    <dd>main contact email address.</dd>
+    <dt><span class="light fixedFont">{string=}</span> <b>full_name</b></dt>
+    <dd>main contact name if available.</dd>
+  </div>
+</details>
+
+<div class="sectionTitle"> Methods </div>
+
+ <details><summary> <a name="getEmail"></a>
+  <div class="fixedFont"> <b>getEmail</b>() </div>
+  <div class="description"> Main contact email address. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dt><span class="light fixedFont">{?string}</span></dt>
+    <dd>email address.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getFullName"></a>
+  <div class="fixedFont"> <b>getFullName</b>() </div>
+  <div class="description"> Main contact name. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dt><span class="light fixedFont">{?string}</span></dt>
+    <dd>name.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="score"></a>
+  <div class="fixedFont"> <b>score</b>(contacts) </div>
+  <div class="description"> Score contact entries against target for similarity. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{?contacts}</span></dt>
+    <dd>list of contact. The list will be sorted by scores.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dt><span class="light fixedFont">{Array.&lt;number&gt;}</span></dt>
+    <dd>respective score.</dd>
+  </dl>
+</details>
+
+
+<br /><div class="g-comments"></div>

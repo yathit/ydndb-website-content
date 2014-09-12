@@ -1,0 +1,149 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.sugarcrm.model.Group"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 2
+collection: "ydn.crm"
+namespace: "ydn.crm.sugarcrm.model"
+
+---
+
+
+<h2 class="classTitle">Class ydn.crm.sugarcrm.model.Group</h2>
+<p>SugarCRM record fields are organized into group. For example group `name` has field of `first_name`, `last_name`, `salutation` and `full_name` fields. Some field does not have group, such as `id`. They are group into `""` (empty string) group name.</p>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.model.Group</b>(parent, group_name) </div>
+  <div class="description"> Create a new Group </div>
+</summary>
+  <div class="details">
+    <div class="details">
+      <dt class="heading">Parameters:</dt>
+      <dt><span class="light fixedFont">{ydn.crm.sugar.model.Record}</span> <b>parent</b></dt>
+      <dd>SugarCRM parent.</dd>
+      <dt><span class="light fixedFont">{string}</span> <b>group_name</b></dt>
+      <dd>Group name.</dd>
+    </div>
+  </div>
+</details>
+<div class="sectionTitle"> Methods </div>
+
+
+<hr> <details><summary> <a name="getFieldAsValue"></a>
+  <div class="fixedFont"> <b>getFieldAsValue</b>(name) </div>
+  <div class="description"> Get record field value as string. </div>
+</summary>
+  <p>`undefined` field value is converted into empty string.</p>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{ydn.crm.sugarcrm.ModuleName}</span> <b>name</b></dt>
+    <dd>Field name.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span> field value.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getFieldInfo"></a>
+  <div class="fixedFont"> <b>getFieldInfo</b>() </div>
+  <div class="description"> Get field Information. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{SugarCrm.ModuleField}</span>Field Information. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getFieldValue"></a>
+  <div class="fixedFont"> <b>getFieldValue</b>(name) </div>
+  <div class="description"> Get record field value. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{ydn.crm.sugarcrm.ModuleName}</span> <b>name</b></dt>
+    <dd>Field name.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{*}</span> field value.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getGroupLabel"></a>
+  <div class="fixedFont"> <b>getGroupLabel</b>() </div>
+  <div class="description"> Get group label. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>Group label. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getGroupName"></a>
+  <div class="fixedFont"> <b>getGroupName</b>() </div>
+  <div class="description"> Get group name. </div>
+</summary>
+
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{string}</span>Group name. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getModuleName"></a>
+  <div class="fixedFont"> <b>getModuleName</b>() </div>
+  <div class="description"> Get module name. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{ydn.crm.sugar.ModuleName}</span>Record module name.</dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="hasField"></a>
+  <div class="fixedFont"> <b>hasField</b>() </div>
+  <div class="description"> Check field exists in module information. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{boolean}</span>`true` if field value exist in module information.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="listFields"></a>
+  <div class="fixedFont"> <b>listFields</b>() </div>
+  <div class="description"> Get list of field name in this group. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{Array.&lt;string&gt;}</span>list of field name.</dd>
+  </dl>
+</details>
+
+<hr> <details><summary> <a name="patch"></a>
+  <div class="fixedFont"> <b>patch</b>(patches) </div>
+  <div class="description"> Get the patch object for given user input field value. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{Object}</span> <b>patches</b></dt>
+    <dd>field name-value pair as Object.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{?Object}</span>`null` if patch is not necessary. </dd>
+  </dl>
+</details>
+
+<br /><div class="g-comments"></div>

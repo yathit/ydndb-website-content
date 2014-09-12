@@ -1,0 +1,57 @@
+---
+layout: ydndb-article
+description: "Getting started with YDN-DB javascript module"
+class: ydndb
+title: "SQL"
+introduction: "Describing query in declearative SQL statement is very powerful. Unfortunately IndexedDB do not have SQL processor. This library parse SQL statement, prepare query as described in previous sections and execute them."
+article:
+  written_on: 2013-04-01
+  updated_on: 2014-04-28
+  order: 4
+collection: ydndb-query
+authors:
+  - kyawtun
+
+---
+
+<div class="container">
+  <div class="content">
+
+ <p>Describing query in declearative SQL statement is very powerful.
+        Unfortunately IndexedDB do not have SQL processor. This library parse
+        SQL statement, prepare physical execution using indexes and
+        execute them by iteration. </p>
+      <p>Currently SQL implementation is very basic.</p>
+      <p>This section use previous database.</p>
+      <pre>db = new ydn.db.Storage('nosql-test-1', author_article_topic_schema);</pre>
+      <h3>SELECT</h3>
+      <pre>db.executeSql('SELECT * FROM author LIMIT 3').then(function(results) {
+  console.log(results);
+}, function(e) {
+  throw e;
+});</pre>
+      <pre>db.executeSql('SELECT title FROM article LIMIT 5 OFFSET 50').then(function(results) {
+  console.log(results);
+}, function(e) {
+  throw e;
+});</pre>
+      <pre>db.executeSql('SELECT * FROM article WHERE license = \'SA\' LIMIT 5 OFFSET 50').then(function(results) {
+  console.log(results);
+}, function(e) {
+  throw e;
+});</pre>
+      <h3>Aggregration</h3>
+      <pre>db.executeSql('SELECT COUNT(*) FROM author').then(function(results) {
+  console.log(results);
+}, function(e) {
+  throw e;
+});</pre>
+      <pre>db.executeSql('SELECT MAX(publish) FROM article').then(function(results) {
+  console.log(results);
+}, function(e) {
+  throw e;
+});</pre>
+
+
+</div>
+</div>

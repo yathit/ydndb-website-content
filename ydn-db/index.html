@@ -1,0 +1,144 @@
+---
+layout: ydndb
+description: "Javascript database module for Indexeddb, Web SQL and localStorage storage mechanisms supporting version migration, advanced query, SQL and transaction."
+class: ydndb
+title: YDN-DB javascript library
+id: ydndb-home
+---
+<div class="ydndb-header centered themed--background">
+	<div class="container">
+		<h1><strong>YDN-DB</strong></h1>
+		<p>HTML5 javascript database library for web app.</p>
+    <a id="download" href="http://www.yathit.com/shop/ydn-db-subscription.html" class="button--secondary-variation themed" title="Buy 2 business days email support">Get Support (50$/mo)</a>
+	</div>
+</div>
+<div class="container">
+	<div class="centered">
+		<h3 class="g-wide--2 g--centered xlarge">Javascript database library for IndexedDB, WebSQL and WebStorage.</h3>
+	</div>
+	<ul class="list-guides-intro list-centered list-reset clear">
+		<li class="g-medium--half g-wide--1 theme--tools">
+			<span class="icon-circle--large themed--background"><i class="icon icon-multi-device-layouts"></i></span><h3 class="large">Multi-browser support</h3>
+			<p>Support all desktop, mobile browsers and web client. See <a href="doc/setup/limitation.html">details</a>. No dependency.</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools g-medium--last">
+			<span class="icon-circle--large themed--background"><i class="icon icon-user-input"></i></span><h3 class="large">Powerful query</h3>
+			<p>Build powerful query using <a href="doc/query/cmpidx.html">compound index</a>, <a href="doc/setup/schema.html#ydn-db-store-schema">multi-entry index</a>, <a href="doc/query/key-joining.html">self-join</a> and multi-query.</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools">
+			<span class="icon-circle--large themed--background"><i class="icon icon-chevron-up"></i></span><h3 class="large">Database that Syncs</h3>
+			<p>Robust and simple <a href="doc/sync/index.html">synchronization</a> with <a href="doc/sync/rest.html">RESTFul web services</a> including <a href="doc/sync/build-in.html">AWS S3 and Google GCS</a>.</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools g-medium--last g-wide--last">
+			<span class="icon-circle--large themed--background"><i class="icon icon-cog"></i></span><h3 class="large">Easy to debug</h3>
+			<p>Turn on <a href="doc/usage/debugging.html">detail log</a> for transaction and database request. Use custom error. No error globbing.</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools g-wide--first">
+			<span class="icon-circle--large themed--background"><i class="icon icon-performance"></i></span><h3 class="large">High performance</h3>
+			<p>Design for <a href="doc/setup/library-developer.html">high performance database API</a> and implemented in arguably the best.</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools g-medium--last">
+			<span class="icon-circle--large themed--background"><i class="icon icon-diamond"></i></span><h3 class="large">SQL support</h3>
+			<p>Now basic <a href="doc/query/sql-query.html">SQL support</a>. MS DocumentDB like API is our goal.</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools">
+			<span class="icon-circle--large themed--background"><i class="icon icon-tick"></i></span><h3 class="large">Custom build</h3>
+			<p>Custom build minified file containing only what you need. (Paid support required.)</p>
+		</li>
+		<li class="g-medium--half g-wide--1 theme--tools g-medium--last g-wide--last">
+			<span class="icon-circle--large themed--background"><i class="icon icon-lessons"></i></span><h3 class="large">Full-text search</h3>
+			<p><a href="doc/full-text/index.html">Full-text search</a> with stemming, normalization and query ranking.</p>
+		</li>
+	</ul>
+</div>
+
+<div class="divider divider--secondary">
+  <span class="themed divider-icon"></span>
+</div>
+
+<div class="container">
+  <div class="content">
+<h3>Beautiful API</h3>
+<p>The library API is carefully designed so that it is simple, powerful and make sense.</p>
+<pre>var db = new ydn.db.Storage('db-name');
+db.put('store-name', {message: 'Hello world!'}, 'id1');
+db.get('store-name', 'id1').always(function(record) {
+  console.log(record);
+});</pre>
+
+  <h3>Rich queries</h3>
+  <p>Fast indexed query on client database with multiple filters, ordering
+    and pagination.</p>
+        <pre>var q = db.from('people').where('age', '>=', 25);
+q.list(10).done(function(peoples) {
+  console.log(peoples); // list of first 10 peoples
+});</pre>
+        <pre>var q = db.from('people').where('country', '=', 'US').order('name');
+q.list(10).done(function(peoples) {
+  console.log(peoples); // list of first 10 peoples from US ordered by name
+});
+q.list(10).done(function(peoples) {
+  console.log(peoples); // next 10 peoples
+});</pre>
+
+  <h3>Unified managed schema</h3>
+  <p>Manage database table or object stores as defined by simple javascript object.
+    Schema could optionally be versioned or let library to generate dynamically.</p>
+        <pre>var schema = {
+  stores: [{
+    name: 'people',
+    indexes: [{
+       keyPath: 'age'
+    }, {
+       name: 'age, name',
+       keyPath: ['age', 'name']
+    }]
+  ]
+}
+var db = new ydn.db.Storage('db-name', schema);</pre>
+
+  <h3>Complex transaction workflow</h3>
+  <p>Run complex transaction workflow over hundreds of indexes on millions of records.</p>
+        <pre>db.run(function health_10up(tx_db) {
+   tx_db.get('player', 1).done(function(p1_obj) {
+        p1_obj.health += 10;
+        tx_db.put('player', p1_obj);
+   });
+}, ['player'], 'readwrite');</pre>
+
+  <h3>High performance streaming API</h3>
+  <p>Reduce memory usage and fast UI respond by using streaming API.</p>
+        <pre>var q = db.from('author').where('first', 'starts', input_value);
+var ul = document.getElementById('auto-suggestion-list');
+ul.innerHTML = '';
+q.open(function (cursor) {
+  var li = document.createElement('li');
+  var people = cursor.getValue();
+  li.textContent = people.first + ' ' + people.last;
+});</pre>
+
+  <h3>Synchronize with REST backend services</h3>
+  <p>Cache and persists in RESTful backend service.</p>
+    <pre> var schema = {
+  stores: [{
+        name: 'todo',
+        keyPath: 'id',
+        Sync: {
+          format: 'gcs',  // Google Cloud Storage
+          Options: {
+            bucket: 'ydn-note-data',
+            prefix: 'todo/'
+          }
+        }
+  }]
+};
+var db = new ydn.db.Storage(db_name, schema);
+// GET https://ydn-note-data.storage.googleapis.com/todo/id123
+db.get('todo', 'id123');
+// PUT https://ydn-note-data.storage.googleapis.com/todo/id123
+db.put('todo', 'id123');
+// DELETE https://ydn-note-data.storage.googleapis.com/todo/id123
+db.remove('todo', 'id123');
+    </pre>
+ </div>
+</div>

@@ -1,0 +1,78 @@
+---
+layout: ydn-api
+title: "Class ydn.crm.sugarcrm.Schema"
+article:
+  written_on: 2014-04-01
+  updated_on: 2014-04-28
+  order: 2
+collection: "ydn.crm"
+namespace: "ydn.crm.sugarcrm"
+
+---
+
+
+<h2 class="classTitle">Class ydn.crm.sugarcrm.Schema</h2>
+<p>SugarCRM database schema.</p>
+<p>SugarCRM database schema generator base on user setting.</p>
+<div class="sectionTitle"> Constructor </div>
+<details> <summary>
+  <div class="fixedFont"> <b>ydn.crm.sugarcrm.Schema</b>(name, info, user_data) </div>
+  <div class="description"> Create a new Schema </div>
+</summary>
+  <div class="details">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{string}</span> <b>name</b></dt>
+    <dd>SugarCRM instance identifier as domain name, eg: "fjochv4737.trial.sugarcrm.eu".</dd>
+    <dt><span class="light fixedFont">{SugarCrm.ServerInfo}</span> <b>info</b></dt>
+    <dd>Server info.</dd>
+    <dt><span class="light fixedFont">{SugarCrm.Record=}</span> <b>user_data</b></dt>
+    <dd>user setting data.</dd>
+  </div>
+</details>
+<div class="sectionTitle"> Methods </div>
+
+
+<hr> <details><summary> <a name="getSchema"></a>
+  <div class="fixedFont"> <b>getSchema</b>() </div>
+  <div class="description"> Get YDN-DB database schema. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{DatabaseSchema}</span> YDN-DB database schema. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getSetting"></a>
+  <div class="fixedFont"> <b>getSetting</b>(name) </div>
+  <div class="description"> Get setting for a given module. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{string}</span> <b>name</b></dt>
+    <dd>module name.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{!Object}</span>module setting. </dd>
+  </dl>
+</details>
+
+
+<hr> <details><summary> <a name="getStoreSchema"></a>
+  <div class="fixedFont"> <b>getStoreSchema</b>(name) </div>
+  <div class="description"> Get YDN-DB store schema for a given module. </div>
+</summary>
+  <dl class="detailList">
+    <dt class="heading">Parameters:</dt>
+    <dt><span class="light fixedFont">{string}</span> <b>name</b></dt>
+    <dd>module name.</dd>
+  </dl>
+  <dl class="detailList">
+    <dt class="heading">Return:</dt>
+    <dd><span class="light fixedFont">{!StoreSchema}</span>YDN-DB store schema. </dd>
+  </dl>
+</details>
+
+
+<br /><div class="g-comments"></div>
