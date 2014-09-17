@@ -2,7 +2,7 @@
 layout: sugarcrm-guide
 description: "Getting started Yathit CRM-in-inbox for SugarCRM in Gmail"
 class: ydndb
-title: Getting started
+title: "User Guides"
 article:
   written_on: 2014-09-05
   updated_on: 2014-09-05
