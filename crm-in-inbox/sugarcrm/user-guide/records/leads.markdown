@@ -51,4 +51,11 @@ Edit the fields in the _record content panel_ as necessary and click _submit but
 
 ## Deleting a Lead
 
+To delete a record, search the record you want to delete. Click search button tab, {{ "magnifying-glass" | svg_icon }}, on the Sidebar. ![Delete a lead](/imgs/sugarcrm/delete-Leads.gif){: .callout}
+
+Click delete menu item from the hamburger menu, {{ "menu" | svg_icon }}, on the right of record header to delete the record. 
+
+A message should appear to notify the record is deleted.
+
+
 {% endwrap %}
