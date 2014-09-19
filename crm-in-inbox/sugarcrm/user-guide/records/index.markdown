@@ -1,6 +1,6 @@
 ---
 layout: sugarcrm-section
-title: "SugarCRM Records"
+title: "Working with SugarCRM Records"
 introduction: "Creating, updating and deleting SugarCRM Records."
 authors:
   - kyawtun

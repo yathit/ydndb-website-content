@@ -11,7 +11,7 @@ article:
 collection: sugarcrm-records
 ---
 
-{% wrap content%}
+{% wrap content %}
 
 [Sugar’s Leads module](http://support.sugarcrm.com/02_Documentation/01_Sugar_Editions/04_Sugar_Professional/Sugar_Professional_7.2/Application_Guide/10_Leads/) consists of individual prospects who may be interested in a product or service your organization provides. Once the lead is qualified as a sales opportunity, leads can be converted into contacts, opportunities, and accounts. There are various ways you can create leads in Sugar such as via the Leads module, duplication, importing leads, etc. Once the lead record is created, you can view and edit information pertaining to the lead via the Leads record view. This documentation will go over the basics of the Leads module as well as the various options available in performing the actions related to the module.
 
@@ -56,6 +56,10 @@ To delete a record, search the record you want to delete. Click search button ta
 Click delete menu item from the hamburger menu, {{ "menu" | svg_icon }}, on the right of record header to delete the record. 
 
 A message should appear to notify the record is deleted.
+
+## Searching Lead records
+
+Lead records can be search on search tab, {{ "magnifying-glass" | svg_icon }}, on the Sidebar. You can search record fields by emails, name, id, description.
 
 
 {% endwrap %}
