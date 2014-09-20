@@ -25,7 +25,7 @@ In javascript use case, such low level key scanning gives perceive fast response
 
 ### Test data
 
-{% include modules/ydndb_data_js.liquid %}
+<script src="/js/ydn-db/data-seeding.js"></script>
 
 Before we start, let us populate the database with some data base on previous schema. Schema definition and random data generation are defined in [data-seeding.js](http://dev.yathit.com/js/ydn-db/data-seeding.js) file.
         
