@@ -1,7 +1,7 @@
 ---
 layout: ydndb-article
 title: "File and Blob"
-introduction: "Develop with pleasure"
+introduction: "IndexedDB can store beyond JSON serializable type, including File and Blob. In fact, File storage is so successful that W3C is even considering to use IndexedDB API over FileSystem API. "
 article:
   written_on: 2014-09-5
   updated_on: 2014-09-5
@@ -12,8 +12,6 @@ authors:
 ---
 
 {% wrap content %}
-
-IndexedDB can store beyond JSON serializable type, including File and Blob. In fact, File storage is so successful that W3C is even considering to use IndexedDB API over FileSystem API. 
 
 File and Blob should be store as single records with out-of-line key as follow:
 

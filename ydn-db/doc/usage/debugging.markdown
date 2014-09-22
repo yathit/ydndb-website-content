@@ -3,7 +3,7 @@ layout: ydndb-article
 description: "Debugging ydn javascript library"
 class: ydndb
 title: Debugging
-introduction: "Develop with pleasure"
+introduction: "Develop with pleasure! We have dedicated nearly 50% of the source codes for debug information."
 article:
   written_on: 2014-09-5
   updated_on: 2014-09-5
@@ -15,11 +15,15 @@ authors:
 
 {% wrap content %}
 
-Use dev version of the compile JS file during development. Dev version are postfix with `-dev` on library js file anme. Put .map file in the same directory as js file. Turn on source map for debugging with full source code. Use build-in logging facility to detail logging.
+With series of asynchronous callbacks, debugging IndexedDB or WebSQL is hard. We have dedicated nearly 50% of the source codes for debug information. These debug information are stripped on production version. To get these information, you can either use _raw version_ or _dev version_. Dev version file is postfixed with `-dev`. Raw version file is postfixed with `-raw`. If you use _dev version_, you should [turn on source map](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) to get raw source codes, instead of minified one.
+
+Use build-in logging facility to detail logging.
 
     var module = 'ydn.db';
     var level = 'finer'; // warning, info, fine, finest, all
     ydn.debug.log(module, level);
+    
+For more detail, see [closure library debugging facility](http://www.safaribooksonline.com/library/view/closure-the-definitive/9781449381882/ch10.html).    
     
 Example output will be   
  

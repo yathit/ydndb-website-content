@@ -157,22 +157,23 @@ The following code snippet show how to make HTTP transport service:
 
 A complete offline application can be found [Checkvist sync demo app](http://dev.yathit.com/demo/checkvist/checkvist-sync.html).
   
-<h3>Synchronizing with YDN-DB</h3>
-<p>YDN-DB have build in synchronization support for AWS S3 (<a href="http://aws.amazon.com/documentation/s3/">Amazon
-  simple storage service</a>), <a href="http://www.ietf.org/rfc/rfc4287.txt">ATOM
-  syndicate format</a>, <a href="http://odata.org/">OData</a>, <a href="https://developers.google.com/gdata/">
-  GData</a>, GCS (<a href="https://developers.google.com/storage/">Google
-  cloud storage</a>).</p>
-      <pre>var schema = {
-  stores: [
-    {
-      name: 'st',
-      Sync: {
-        format: 's3'
-        transport: gapi.client
-      }
-    }
-  ]
-};</pre>
+### Synchronizing with YDN-DB
+
+YDN-DB have build in synchronization support for AWS S3 ([Amazon
+  simple storage service](http://aws.amazon.com/documentation/s3/)), [ATOM
+  syndicate format](http://www.ietf.org/rfc/rfc4287.txt), [OData](http://odata.org/), 
+  [GData](https://developers.google.com/gdata/), GCS ([Google cloud storage](https://developers.google.com/storage/)).
+  
+    var schema = {
+      stores: [
+        {
+          name: 'st',
+          Sync: {
+            format: 's3'
+            transport: gapi.client
+          }
+        }
+      ]
+    };
 
 {% endwrap %}        

@@ -9,7 +9,8 @@ article:
 collection: ydndb-using
 authors:
   - kyawtun
-
+g_comments_href:
+  http://dev.yathit.com/ydn-db/transaction.html
 ---
 
 {% wrap content %}
