@@ -35,13 +35,11 @@ YDN-DB is a pure javascript and hence simple include a pre-build file, such as [
 A simple way to initialize a database is by specifying a database
   name.
   
-{% highlight js %}  
     db = new ydn.db.Storage('db-name');
     db.put('store-name', {message: 'Hello world!'}, 'id1');
     db.get('store-name', 'id1').always(function(record) {
       console.log(record);
-    });
-{% endhighlight %}    
+    });  
     
 The storage instance, `ydn.db.Storage`, connects to suitable data storage mechanisms ranging from IndexedDB to WebSQL to localStore depending on browser. It will open existing database or create a new database
   with the given database name.

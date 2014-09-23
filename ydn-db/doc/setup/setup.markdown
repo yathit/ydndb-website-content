@@ -12,7 +12,7 @@ authors:
   - kyawtun
 notes:
   shaky:
-    Currently ydn-db repository in GitHub does not commit minified files breaking npm or bower. :-(
+    YDN modules are Closure Library modules, which is different from CommonJS module. YDN modules may not fit with workflow of npm, browserify, bower, etc.
 
 ---
 
@@ -51,6 +51,12 @@ The pre-build minified expose as both [AMD](http://requirejs.org/docs/whyamd.htm
 Installed by <a href="http://bower.io">bower</a>:
 
     bower install ydn.db   
+    
+### NPM
+
+Install by <a href="https://www.npmjs.org/">NPM</a>:
+    
+    npm install ydn.db
     
 {% include modules/remember.liquid title="Caution" inline=true text=page.notes.shaky %}
 
