@@ -250,6 +250,6 @@ Please check out running [demo app](http://dev.yathit.com/demo/feature-matrix/in
 
 If you are not clear about how or why, feel free to make a comment below. For bug report of the source code, please fine issue on github. For alternative or better idea, please discuss and send pull request.
 
-[Feature matrix Angular.js app](/demo/feature-matrix/index.html) ([source code repo](https://github.com/yathit/feature-matrix))
+[Feature matrix Angular.js app](http://yathit.github.io/feature-matrix/app/index.html) ([source code repo](https://github.com/yathit/feature-matrix))
 
 {% endwrap %}     

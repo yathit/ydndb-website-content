@@ -46,7 +46,7 @@ authors:
         <label for="db-indexeddb" title="For chrome, firefox, IE10+">IndexedDB</label>
         <input type="checkbox" name="mechanism" value="core" id="db-websql" checked/>
         <label for="db-websql" title="For safari, chrome in desktop, mobile and web client">WebSQL</label>
-        <input type="checkbox" name="mechanism" value="core" id="db-ls" checked/>
+        <input type="checkbox" name="mechanism" value="core" id="db-ls"/>
         <label for="db-ls" title="Supported in most browser, but limited to 2.5 or 5 MB">WebStorage</label>
         <input type="checkbox" name="mechanism" value="core" id="db-userdata"/>
         <label for="db-userdata" title="For IE6, but limited to 1 MB">UserData</label>
@@ -59,8 +59,8 @@ authors:
     </div><div>
       <input type="checkbox" name="query" id="fs-query" checked/>
       <label for="fs-query" title="Help build database query, automatically optimize and execute on top of core module.">Query</label>
-    </div><div>
-      <input type="checkbox" name="coru" id="fs-coru" style="display: none;"/>
+    </div><div  style="display: none;">
+      <input type="checkbox" name="coru" id="fs-coru"/>
       <label for="fs-coru" title="Coroutine module">CORU</label>
     </div><div>
       <input type="checkbox" name="sql" id="fs-sql"/>
@@ -84,7 +84,7 @@ authors:
     <br/>
     <a href="https://github.com/yathit/ydn-db">Github</a> for code delivery and workflow integration
   </p>
-  <div>See <a href="https://bitbucket.org/ytkyaw/ydn-db/wiki/Release_notes">Release
+  <div>See <a href="https://bitbucket.org/ytkyaw/ydn-db/wiki/Release_note_v1">Release
     notes</a> for changes.
   </div>
       </article>
