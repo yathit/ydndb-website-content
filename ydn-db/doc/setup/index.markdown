@@ -59,7 +59,7 @@ Use `put` method to insert a new or update existing
     
 The first argument is store name. It is [object store](http://www.w3.org/TR/IndexedDB/#object-store-concept) name in IndexedDB and TABLE name in WebSQL. Since a schema is not given, a table or object store will be created if not exist.
 
-The second argument is record value that we want to store in the database. It should be a simple object. A [*structured clone*](http://www.w3.org/TR/html5/common-dom-interfaces.html#internal-structured-cloning-algorithm)   of the object is stored in the database. A structured clone is similar concept in JSON serialization, but it is more efficient and more powerful. File and Blob are clonable, although DOM Element is not. If the record fail to clone it, underlying database API shall throw uncaught `DataCloneError`. 
+The second argument is record value that we want to store in the database. It should be a simple javascript object ((JSON)[http://json.org/]). A [*structured clone*](http://www.w3.org/TR/html5/common-dom-interfaces.html#internal-structured-cloning-algorithm) of the object is stored in the database. A structured clone is similar concept in JSON serialization, but it is more efficient and more powerful. File and Blob are serializable. If the record fail to clone it, underlying database API shall throw uncaught `DataCloneError`. 
   
 The third argument is *primary key* of the record. A [key](http://www.w3.org/TR/IndexedDB/#key-construct) can be number, string, Date or array of those types. Since we are given primary key separately from the record, it is called *out-of-line* key.
   
