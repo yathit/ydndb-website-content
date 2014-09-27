@@ -3,7 +3,7 @@ layout: ydndb-article
 description: "Debugging ydn javascript library"
 class: ydndb
 title: Debugging
-introduction: "Develop with pleasure! We have dedicated nearly 50% of the source codes for debug information."
+introduction: "We have dedicated nearly 50% of the source codes for debug information. Develop with pleasure! "
 article:
   written_on: 2014-09-5
   updated_on: 2014-09-5
