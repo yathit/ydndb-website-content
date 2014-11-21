@@ -18,19 +18,19 @@ notes:
 
 {% wrap content %}
 
-  
-IndexedDB is a key-document database and does not have a SQL processor. Query in IndexedDB is scanning keys over a range. For more complex query, application is responsible to join or place in buffer to get necessary result. SQL processor performs the same thing in the lower level during its query execution. 
 
-In javascript use case, such low level key scanning gives perceive fast response since we are getting immediate result, record-by-record. Whereas in WebSQL, all processing are performed in the database and return to javascript only after all finished. Consequently, memory and CPU times may have been wasted if the result are no longer require by the UI process.  
+IndexedDB is a key-document database with secondary index. SQL is decidedly removed from the IndexedDB API specification due to difficultly in defining SQL language. However efficiently database query is remained in the IndexedDB API. We only miss easy to write query with its rich, but limited vocabulary, unambiguous grammar and understandable syntax of SQL language. IndexedDB API exposes only necessary for efficiently querying, i.e, querying over a range of indexes. At first directly working with indexes seems hopeless, but it does make sense of javascript, in which responsiveness is paramount. Query API in indexedDB is simple, we either query by primary key or secondary key (index). Query results are always one record at a time (as of current specification).
+
+In this section, we will describe how to query IndexedDB using YDN-DB library. You will need to understand [YDN-DB database schema](../setup/schema.html), specifically defining [indexes](../setup/index.html).
 
 ### Test data
 
 <script src="/js/ydn-db/data-seeding.js"></script>
 
 Before we start, let us populate the database with some data base on previous schema. Schema definition and random data generation are defined in [data-seeding.js](http://dev.yathit.com/js/ydn-db/data-seeding.js) file.
-        
+
     db = new ydn.db.Storage('nosql-query', author_article_topic_schema);
-    
+
     db.count('topic').done(function(cnt_topic) {
       var n_topics = 10;
       var n_authors = 100;
@@ -40,7 +40,7 @@ Before we start, let us populate the database with some data base on previous sc
         db.put('topic', topics).done(function(t_keys) {
           console.log(t_keys.length + ' topics added.');
           var authors = genAuthors(n_authors);
-          var emails = authors.map(function(x) {return x.email;});   
+          var emails = authors.map(function(x) {return x.email;});
           var articles = genArticles(article_per_author*n_authors, t_keys);
           var article_keys = articles.map(function(x) {return pickOne(emails) + '/' + x.publish;});
           db.put('author', authors).done(function(x) {console.log(x.length + ' authors added.');});
@@ -49,10 +49,10 @@ Before we start, let us populate the database with some data base on previous sc
       } else {
         console.log('db ready.');
       }
-    });   
-         
-Above code snippet will generate three stores and randomly populate them with 10 topics, 100 authors and 1000 articles. An example of author record and article records is as follow: 
-        
+    });
+
+Above code snippet will generate three stores and randomly populate them with 10 topics, 100 authors and 1000 articles. An example of author record and article records is as follow:
+
     author_1 = {
       email: 'me@aaronsw.com',
       born: 531763200000,
@@ -67,42 +67,90 @@ Above code snippet will generate three stores and randomly populate them with 10
       license:"NC",
       publisher:"Springer",
       publish:640022400000,
-      topics:["object-relational mapper","website wireframe","distributed computing","dynamic systems development method","open source","integrated library system"]}    
-           
-Article store use out-off-line primary key as composite key of parent key, author email, and publish date. Ideally composite key will use array key, but here we just concat them so that it is compatible with IE11, which does not support array key.   
-        
-### Filtering 
-       
-Filtering or retrieving records in a key range of indexed files is as efficient as primary key query. The query field must be indexed. In this library, it is performed as follow: 
-      
+      topics:["object-relational mapper","website wireframe","distributed computing","dynamic systems development method","open source","integrated library system"]}
+
+Article store use out-off-line primary key as composite key of parent key, author email, and publish date. Ideally composite key will use array key, but here we just concat them so that it is compatible with IE11, which does not support array key.
+
+
+### Key range query for filtering and pagination
+
+One of the simplest, as well as efficient and commonly used method is [key range](../setup/key.html#keyrange) query. Key range query allow you to query a ordered set of records between optionally lower and upper bound of an indexed field of the record. It is similar to WHERE clause in SQL.
+
+Suppose we want to query all records with 'license' field value is 'SA'. Use `values` methods as follow:
+
     var key_range = ydn.db.KeyRange.only('SA');
-    req = db.get(new ydn.db.IndexValueIterator('article', 'license', key_range));
-    req.then(function(record) {
+    db.values('article', 'license', key_range).then(function(record) {
         console.log(record);
       }, function(e) {
-        throw e;
+        console.error(e);
       }
     );
-          
-However instead of giving ydn.db.KeyRange, to get method, an iterator is used. This is to avoid confusion and high light the fact that we are iterating. Unlike primary key, secondary key can reference to multiple records. If multiple results are expected, list method can be use as follow:    
-      
+
+For querying on primary key, skip index field name, e.g: `db.values('article', key_range)`.
+
+By default, number of results are limited to 100. Limit and offset can be specified after key range arguments as follow:
+
+    db.values('article', 'license', key_range, 10, 5).always(function(record) {
+        console.log(record);
+      }
+    );
+
+Pagination can be accomplished by using limit and offset.
+
+Results are ordered by secondary keys and then by primary keys. Here, primary key is constant of 'SA', the results are essentially ordered by primary keys.
+
+You can reverse the ordering by:
+
+     db.values('article', 'license', key_range, 10, 0, true).always(function(record) {
+         console.log(record);
+       }
+     );
+
+If we just want to know only primary of the record, use `keys` method:
+
+    db.keys('article', 'license', key_range).always(function(record) {
+        console.log(record);
+      }
+    );
+
+Key range is essentially WHERE clause in SQL. See [key range construction table](../setup/key.html#keyrange) for comparison to WHERE clause.
+
+    SELECT * FROM article WHERE publish >= 946656000000 AND publish < 978278400000;
+
+Above SQL query is translate to key range query by:
+
+    var kr = ydn.db.KeyRange(946656000000, 978278400000, false, true);
+    db.values('article', 'publish', kr).always(function(record) {
+        console.log(record);
+      }
+    );
+
+### Iterators
+
+However instead of using key range, an iterator can be used. An iterator is essentially a combination of store name, index name and key range to specify a continuous stream of records.
+
     var limit = 10;
     req = db.values(new ydn.db.IndexValueIterator('article', 'license', key_range), limit);
     req.done(function(records) {
         console.log(records);
       }
     );
-          
-An iterator is essentially a combination of store name, index name and key range to specify a continuous stream of records. There are two type of iterators: key iterator and value iterator. Value iterator reference to record value whereas key iterator to index key and hence avoid serialization on retrieval. For example, we can retrieve all name starting with 'M' as follow without serialization cost of the records: 
-         
+
+There are two type of iterators: key iterator and value iterator. Value iterator reference to record value whereas key iterator to index key and hence avoid serialization on retrieval. For example, we can retrieve all name starting with 'M' as follow without serialization cost of the records:
+
     var key_range = ydn.db.KeyRange.starts('M');
-    req = db.values(new ydn.db.IndexIterator('article', 'title', key_range), 10);
+    req = db.keys(new ydn.db.IndexIterator('article', 'title', key_range), 10);
     req.done(function(titles) {
         console.log(titles);
       }
     );
-             
-If the field is not indexed, all records in the store must be iterated. This is achieved by using open method.           
+
+It should be note that, above query is not possible in key range query syntax.
+
+### Iterations
+
+There are situation that index-based query is not possible or we simply don't want to storage cost of index. In this case all records in the store must be enumerate to find the desire result. This is achieved by using [open method](/api/ydn/db/storage.html#open).
+
     var count = 0;
     req = db.open(function(cursor) {
       var record = cursor.getValue();
@@ -111,10 +159,10 @@ If the field is not indexed, all records in the store must be iterated. This is 
     }, new ydn.db.ValueIterator('author'));
     req.done(function() {
       console.log(count + ' authors found.');
-    }, 'readonly');  
-    
-Opening can be invoked by `'readonly'` or `'readwrite'` mode.
- 
-In general, query involves filtering multiple fields, paging and the results are to be sorted. Such complex queries are solved by using index, [compound index](compound-index.html) and algorithmic [key joining](key-joining.html).    
+    }, 'readonly');
 
-{% endwrap %}    
+Opening can be invoked by `'readonly'` or `'readwrite'` mode.
+
+In general, query involves filtering multiple fields, paging and the results are to be sorted. Such complex queries are solved by using index, [compound index](compound-index.html) and algorithmic [key joining](key-joining.html).
+
+{% endwrap %}
