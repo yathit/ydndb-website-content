@@ -136,6 +136,31 @@ of record value with weighting more on `first`.
     }]
 
 
+Native full-text search on WebSQL
+---------------------------------
+
+WebSQL support full text search via [FTS3 extension](http://www.sqlite.org/fts3.html) on Chrome and Safari. The follow example illustrate full text search usage. Use virtual table to create full text index using porter tokenizer. Here is example from [Nolan Lawson](http://nolanlawson.com/),
+
+    var db = openDatabase('fts_demo', 1, 'fts_demo', 5000000);
+
+    db.transaction(function (tx){
+      function onReady() {
+        var content = 'WebSQL has full-text search!';
+        tx.executeSql('insert into doc values (?)', [content], function () {
+          var terms = ['websql', 'text', 'search', 'searches', 'searching', 'indexeddb']
+          terms.forEach(function (term) {
+            tx.executeSql('select count(*) as count from doc where content match ?',
+                [term], function (tx, res) {
+              var count = res.rows.item(0).count;
+              console.log(term, !!count);
+            });
+          });
+        });
+      }
+      tx.executeSql('create virtual table doc using fts3(content text, tokenize=porter);', [], onReady, onReady);
+    });
+
+
 Demo applications
 -----------------
 
@@ -166,4 +191,4 @@ Collect all dependency using `git` or `svn`. Generate closure dependency using
 You should able to run example using raw js files.
 Use `ant build` for minification.
 
-{% endwrap %}   
+{% endwrap %}
