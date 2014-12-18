@@ -27,6 +27,8 @@ In this section, we will describe how to query IndexedDB using YDN-DB library. Y
 
 <script src="/js/ydn-db/data-seeding.js"></script>
 
+{% include modules/remember.liquid title="Tip" inline=true text=page.notes.console %}
+
 Before we start, let us populate the database with some data base on previous schema. Schema definition and random data generation are defined in [data-seeding.js](http://dev.yathit.com/js/ydn-db/data-seeding.js) file.
 
     db = new ydn.db.Storage('nosql-query', author_article_topic_schema);
