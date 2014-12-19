@@ -76,10 +76,10 @@ Here, scanning query is performed using `scan` method. Notice that after key sca
 
 We can resume the query from the previous by issue the query again. It is possible to reverse the query by changing the sing inside `multiQuery` function. These are patterns for pagination in ydn-db query, which does not use offset.
 
-`scan` method is very general and can be combine with [key joining algorithm](key-joining.html) described previously. It should be notice that multi-query is [logical disjunction, OR](http://en.wikipedia.org/wiki/Logical_disjunction) and [logical conjunction, AND](http://en.wikipedia.org/wiki/Logical_conjunction)
+`scan` method is very general and can be combine with [key joining algorithm](key-joining.html) described previously. It should be notice that multi-query is [logical disjunction, OR](http://en.wikipedia.org/wiki/Logical_disjunction), while key joining is [logical conjunction, AND](http://en.wikipedia.org/wiki/Logical_conjunction).
 
 [Negation, NOT](http://en.wikipedia.org/wiki/Negation) is implemented by multiple query of open lower bound key range and open upper bound key range query. For example, the query `SELECT * FROM article WHERE topics != "open source"` is result of multi query of iterators `ydn.db.IndexIterator.where('article', 'topics', '>', 'open source')` and `ydn.db.IndexIterator.where('article', 'topics', '<', 'open source')`.
 
-By re-writing query into [canonical normal form](http://en.wikipedia.org/wiki/Canonical_normal_form),  combination of these queries can be executed. There are no limit in number of query, but only one range query can be in the combination.
+By re-writing query into [canonical normal form](http://en.wikipedia.org/wiki/Canonical_normal_form),  combination of these queries can be executed. There are no limit in number of query, but only one range query can be in the combination. For more detail about these query see Alfred Fuller's [Next gen queries](https://www.youtube.com/watch?v=ofhEyDBpngM) in Google I/0 2010.
 
 {% endwrap %}
