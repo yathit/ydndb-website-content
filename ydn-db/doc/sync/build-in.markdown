@@ -17,12 +17,16 @@ g_comments_href:
 
 {% wrap content %}
 
+
+> This article refer to old `sync` module. See [Entity](entity.html) for new way of synchronization.
+
 Synchronizing with RESTful service is pretty straight forward. The following example use [Checkvist Open API](https://checkvist.com/auth/api), which follow REST principles for obtaining and updating
 the data. Currently the API does not expose medata data on entity request header. For entity 'checklists', the resource URI and sample data for key
 190078 is:
 
-    https://beta.checkvist.com/checklists/190078.json</pre>
-          <pre>{
+    https://beta.checkvist.com/checklists/190078.json
+    
+    {
       id: 190078
       name: "test sync app"
       public: false

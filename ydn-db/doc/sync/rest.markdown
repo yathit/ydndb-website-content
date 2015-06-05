@@ -7,16 +7,19 @@ introduction: "Automatically synchronize browser database with RESTful web servi
 article:
   written_on: 2013-05-18
   updated_on: 2014-05-18
-  order: 3
+  order: 4
 collection: ydndb-sync
 authors:
   - kyawtun
 g_comments_href:
   http://dev.yathit.com/ydn-db/synchronization.html
+  
 ---
 
 {% wrap content %}
 
+
+> This article refer to old `sync` module. See [Entity](entity.html) for new way of synchronization.
 
 Synchronizing client database and backend RESTful server is fairly straight forwards. To archive efficient synchronization, the implementation is require more on server side than on client side. To facilitate client side data caching, HTTP protocol provide two (four methods) request header. Basically the state of the data is identified by either etag or updated date or both. If etag is used, a GET request include [If-None-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.26) header of know etag value from the client side data. Server return 304 without response body if the data not changed. For modification requests, [If-Match](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24) header is used to prevent overriding wrong version of a resource. The use case of modified date is similar.
 
