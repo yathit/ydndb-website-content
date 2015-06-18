@@ -3,7 +3,7 @@ layout: ydndb-article
 description: "NoSQL query"
 class: ydndb
 title: "Compound index"
-introduction: "IndexedDB API provides compound index to make complex query possible."
+introduction: "The IndexedDB API provides compound indexes to make complex queries possible."
 article:
   written_on: 2013-04-01
   updated_on: 2014-04-28
@@ -13,20 +13,20 @@ authors:
   - kyawtun
 notes:
   messages:
-    - Pages in this sections include the YDN-DB script and some preloaded data and utility functions, so that you follow the sample code in your browser's developer console to see in action.
-    - Database have to be loaded with sample data as described in section home page.
+    - Pages in this section include the YDN-DB script and some preloaded data and utility functions.  You can follow the sample code in your browser's developer console to see in action.
+    - Your database will have to be loaded with sample data as described in section home page.
     
 ---
 
 {% wrap content %}
 
-A [compound key](http://en.wikipedia.org/wiki/Compound_key) is a key that consists of two or more attributes that uniquely identify an entity occurrence. In IndexedDB, compound key can be created either by compound index using array [keyPath](http://www.w3.org/TR/IndexedDB/#key-path-construct) or [key](http://www.w3.org/TR/IndexedDB/#key-construct) itself is an array as described in [nested set model](../setup/key.html#nested-set-model). 
+A [compound key](http://en.wikipedia.org/wiki/Compound_key) is a key that consists of two or more attributes that uniquely identify an entity occurrence. In IndexedDB, a compound key can be created in an index from either a [keyPath](http://www.w3.org/TR/IndexedDB/#key-path-construct) array or from a  [key](http://www.w3.org/TR/IndexedDB/#key-construct) array as described in [Nested Set Model](../setup/key.html#nested-set-model). 
 
-Compound index is created by providing keyPath as array in [store schema](/api/ydn/db/schema.html#Store). See [data-seeding.js](/js/ydn-db/data-seeding.js) file, in which `'company_store_schema'` extensively use compound index for querying. 
+A compound index is created by providing a keyPath array in the [schema store](/api/ydn/db/schema.html#Store) section. For example, the [data-seeding.js](/js/ydn-db/data-seeding.js) file's `'company_store_schema'` uses compound indexes extensively for querying. 
 
 {% include modules/remember.liquid title="Tip" inline=true list=page.notes.messages %}
 
-Suppose if we want to filter 'license' and 'publisher' fields of the 'article' store, we can index both fields into a composite index by specifying keyPath into array as follow:
+Suppose you want to filter the 'license' and 'publisher' fields of the 'article' store.  You can index both fields into a composite index by specifying a keyPath array as follows:
 
     var schema = {
       store: [{
@@ -38,7 +38,7 @@ Suppose if we want to filter 'license' and 'publisher' fields of the 'article' s
       }]
     };
 
-The index value is array of two elements having first element as 'publisher' field value and second element as 'license' field value of the record. The key comparison algorithm ensure that  records are sorted by license followed by publisher by iterating this index value. If we filter 'license' to 'SA', we get the result sorted by publisher as follow:
+The index value is an array of two elements: the first element is the 'license' field and the second element is the 'publisher' field of the record. The key comparison algorithm ensures that results are sorted by license followed by publisher and iterates through the index in this order. If we filter 'license' to 'SA', we get the results sorted by publisher as follows:
     
     key_range = ydn.db.KeyRange.starts(['SA']);
     db.values(new ydn.db.IndexValueIterator('article', 'license, publisher', key_range), 10).done(function(articles) {
