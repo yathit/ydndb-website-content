@@ -46,7 +46,7 @@ The index value is an array of two elements: the first element is the 'license' 
       }
     );
         
-It is notice that to get 'publisher' field sorted, we keep 'license' field constant. However we can filter 'publisher' by range.      
+Notice that we keep the 'license' field constant to get the 'publisher' field sorted.   Alternately, we can filter 'publisher' by range.      
   
     key_range = ydn.db.KeyRange.bound(['SA', 'A'], ['SA', 'B']);
     db.values(new ydn.db.IndexValueIterator('article', 'license, publisher', key_range)).done(function(articles) {
@@ -54,12 +54,12 @@ It is notice that to get 'publisher' field sorted, we keep 'license' field const
       }
     );
     
-Only the last field can be filtered by a range in index query. Keep in mind this limitation.
+Only the last field in an index can be filtered by a range in index query. Keep this limitation in mind.
+
+It is not possible to use this index to filter by 'publisher' and sort by 'license'. That requires another index of `['publisher', 'license']`. This limits compound index use in ad hoc queries.
  
-With above index, it is not possible to filter 'publisher' and sorted by 'license'. That require another index of `['publisher', 'license']`. This limit compound index to use in ad hoc query.
+Note that the list method does not have an offset when using an iterator. This is by design to improve performance and robustness: skipping a number of records is not fast for a large offset value. Also, you cannot be sure that the number of records does not change during execution of the query. The iterator saves the current position so it can resume from that position.  If you are using views to page through results, invoke the list again with the existing iterator to page to the next view. The position can even be be persisted to storage and resumed at a later time. To reverse the direction of the results, use `reverse` method of the iterator.
  
-Note that, when iterator is used, list method do not have offset. It is for performance and robustness reasons. Skipping a number of records is not fast for large offset value. At the same time, we cannot sure that, the number of records are not change during the time. Iterator save current position and hence it can resume from the last position. For paging next view, invoke the list again with the existing iterator. It will page to the next view. Position can be be persist to storage and resume on later time. To reverse the direction, use `reverse` method of the iterator.
- 
-Query using compound index take only logarithmic time on object store records and hence it is very fast. But it requires more CPU time on write and extra storage for indexes. Query have to be plan before for indexing. Query are limited to one range filter. Multiple sort order is supported.
+Queries using a compound index take only logarithmic time on object store records: it is very fast.  Writing data with indexes requires more CPU time and extra storage for the indexes. Queries have to be planned before indexing and queries are limited to one range filter.  Multiple sort orders are supported.
      
 {% endwrap %}       
