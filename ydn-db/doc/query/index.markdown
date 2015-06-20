@@ -1,6 +1,6 @@
 ---
 layout: ydndb-section
-description: "Getting started with the YDN-DB JavaScript library and fundamental database concepts"
+description: "YDN-DB library query in-depth."
 class: ydndb
 title: Query
 introduction: "YDN-DB library query in-depth."
@@ -12,7 +12,7 @@ collection: ydndb-doc
 id: ydndb-query
 notes:
   console:
-  Pages in this section include the YDN-DB script and some preloaded data and utility functions.  You can follow the sample code in your browser's developer console to see in action.
+    Pages in this section include the YDN-DB script and some preloaded data and utility functions.  You can follow the sample code in your browser's developer console to see in action.
 
 ---
 
