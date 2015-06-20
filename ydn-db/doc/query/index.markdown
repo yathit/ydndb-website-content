@@ -1,6 +1,6 @@
 ---
 layout: ydndb-section
-description: "Getting started with YDN-DB javascript library and fundamental database concepts"
+description: "Getting started with the YDN-DB JavaScript library and fundamental database concepts"
 class: ydndb
 title: Query
 introduction: "YDN-DB library query in-depth."
@@ -12,16 +12,16 @@ collection: ydndb-doc
 id: ydndb-query
 notes:
   console:
-    Pages in this sections include the YDN-DB script and some preloaded data and utility functions, so that you follow the sample code in your browser's developer console to see in action.
+  Pages in this section include the YDN-DB script and some preloaded data and utility functions.  You can follow the sample code in your browser's developer console to see in action.
 
 ---
 
 {% wrap content %}
 
 
-IndexedDB is a key-document database with secondary index. SQL is decidedly removed from the IndexedDB API specification due to difficultly in defining SQL language. However efficiently database query is remained in the IndexedDB API. We only miss easy to write query with its rich, but limited vocabulary, unambiguous grammar and understandable syntax of SQL language. IndexedDB API exposes only necessary for efficiently querying, i.e, querying over a range of indexes. At first directly working with indexes seems hopeless, but it does make sense of javascript, in which responsiveness is paramount. Query API in indexedDB is simple, we either query by primary key or secondary key (index). Query results are always one record at a time (as of current specification).
+IndexedDB is a key-document database with secondary indexes. SQL is decidedly absent from the IndexedDB API specification due to the difficultly in defining the SQL language. However efficiently database query remains in the IndexedDB API. We write queries with its rich, but limited, vocabulary, unambiguous grammar and syntax reminescent of the SQL language. The indexedDB API exposes only what is necessary for efficiently querying, i.e., how to query over a range of indexes. Working directly with indexes may sound clumsy, but it makes sense in JavasScript where responsiveness is paramount.  The Query API in indexedDB is simple: we either query by the primary key or a secondary key from an index. Query results are always returned one record at a time.
 
-In this section, we will describe how to query IndexedDB using YDN-DB library. You will need to understand [YDN-DB database schema](../setup/schema.html), specifically defining [indexes](../setup/index.html).
+In this section, we will describe how to query IndexedDB using the YDN-DB library. You will need to understand the [YDN-DB database schema](../setup/schema.html) section, specifically defining [indexes](../setup/index.html).
 
 ### Test data
 
