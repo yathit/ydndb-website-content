@@ -29,7 +29,7 @@ In this section, we will describe how to query IndexedDB using the YDN-DB librar
 
 {% include modules/remember.liquid title="Tip" inline=true text=page.notes.console %}
 
-Before we start, let us populate the database with some data base on previous schema. Schema definition and random data generation are defined in [data-seeding.js](http://dev.yathit.com/js/ydn-db/data-seeding.js) file.
+Before starting, you should populate the database with some data based upon previous schema. Schema definition and random data generation are defined in the [data-seeding.js](http://dev.yathit.com/js/ydn-db/data-seeding.js) file.
 
     db = new ydn.db.Storage('nosql-query', author_article_topic_schema);
 
@@ -53,7 +53,7 @@ Before we start, let us populate the database with some data base on previous sc
       }
     });
 
-Above code snippet will generate three stores and randomly populate them with 10 topics, 100 authors and 1000 articles. An example of author record and article records is as follow:
+The above code snippet generates three stores and randomly populates them with 10 topics, 100 authors and 1000 articles.  Here is an example of an author record and an article record:
 
     author_1 = {
       email: 'me@aaronsw.com',
@@ -64,21 +64,21 @@ Above code snippet will generate three stores and randomly populate them with 10
       hobby: ['programming', 'blogging', 'politics']
     };
     article_1 = {
-      title:"Database process integrated library system into a class",
+      title:"Database Processes for an Integrated Library System in a Class",
       content:"...",
       license:"NC",
       publisher:"Springer",
       publish:640022400000,
       topics:["object-relational mapper","website wireframe","distributed computing","dynamic systems development method","open source","integrated library system"]}
 
-Article store use out-off-line primary key as composite key of parent key, author email, and publish date. Ideally composite key will use array key, but here we just concat them so that it is compatible with IE11, which does not support array key.
+The article store uses an out-of-line primary key which is a composite key composed of the parent key, the author's email, and the publication date (publish field).  While a composite key is, ideally, an array of the composed keys, this just concatenates the fields to maintain compatibility with IE11. IE11 does not support array keys.
 
 
 ### Key range query for filtering and pagination
 
-One of the simplest, as well as efficient and commonly used method is [key range](../setup/key.html#keyrange) query. Key range query allow you to query a ordered set of records between optionally lower and upper bound of an indexed field of the record. It is similar to WHERE clause in SQL.
+One of the simplest, efficient, and common filter methods is the [key range](../setup/key.html#keyrange) query. A key range query allows you to query a ordered set of records, optionally specifying a lower and upper bound of an indexed field. It is similar to WHERE clause in SQL.
 
-Suppose we want to query all records with 'license' field value is 'SA'. Use `values` methods as follow:
+To query all records with the 'license' field value 'SA', use the `values` method as follows:
 
     var key_range = ydn.db.KeyRange.only('SA');
     db.values('article', 'license', key_range).then(function(record) {
@@ -88,9 +88,9 @@ Suppose we want to query all records with 'license' field value is 'SA'. Use `va
       }
     );
 
-For querying on primary key, skip index field name, e.g: `db.values('article', key_range)`.
+To query on the primary key, skip the index field name, e.g: `db.values('article', key_range)`.
 
-By default, number of results are limited to 100. Limit and offset can be specified after key range arguments as follow:
+By default, the number of results is limited to 100. Limit and offset arguments can be specified after the key range arguments:
 
     db.values('article', 'license', key_range, 10, 5).always(function(record) {
         console.log(record);
@@ -99,27 +99,27 @@ By default, number of results are limited to 100. Limit and offset can be specif
 
 Pagination can be accomplished by using limit and offset.
 
-Results are ordered by secondary keys and then by primary keys. Here, primary key is constant of 'SA', the results are essentially ordered by primary keys.
+Results are ordered by secondary keys and then by primary keys.  In the above example, the primary key is a constant of 'SA', so the results are ordered by the secondary key.
 
-You can reverse the ordering by:
+You can reverse the ordering with a boolean:
 
      db.values('article', 'license', key_range, 10, 0, true).always(function(record) {
          console.log(record);
        }
      );
 
-If we just want to know only primary of the record, use `keys` method:
+If we just want to know the primary keys of records, use the `keys` method:
 
     db.keys('article', 'license', key_range).always(function(record) {
         console.log(record);
       }
     );
 
-Key range is essentially WHERE clause in SQL. See [key range construction table](../setup/key.html#keyrange) for comparison to WHERE clause.
+The key range is essentially the WHERE clause in SQL. See [key range construction table](../setup/key.html#keyrange) for a comparison to the WHERE clause.
 
     SELECT * FROM article WHERE publish >= 946656000000 AND publish < 978278400000;
 
-Above SQL query is translate to key range query by:
+The above SQL query is translated to a key range query as:
 
     var kr = ydn.db.KeyRange(946656000000, 978278400000, false, true);
     db.values('article', 'publish', kr).always(function(record) {
@@ -129,7 +129,7 @@ Above SQL query is translate to key range query by:
 
 ### Iterators
 
-However instead of using key range, an iterator can be used. An iterator is essentially a combination of store name, index name and key range to specify a continuous stream of records.
+An iterator can be used instead of a key range. An iterator specifies a continuous stream of records by combining a store name, index name and key range.
 
     var limit = 10;
     req = db.values(new ydn.db.IndexValueIterator('article', 'license', key_range), limit);
@@ -138,7 +138,7 @@ However instead of using key range, an iterator can be used. An iterator is esse
       }
     );
 
-There are two type of iterators: key iterator and value iterator. Value iterator reference to record value whereas key iterator to index key and hence avoid serialization on retrieval. For example, we can retrieve all name starting with 'M' as follow without serialization cost of the records:
+There are two type of iterators: key iterators and value iterators.  A value iterator references values in a record and requires serializaiton on retrieval.  A key iterator references only the indexed key and avoids the serializaiton cost. For example, we can retrieve all names starting with 'M' without the serialization cost of the records:
 
     var key_range = ydn.db.KeyRange.starts('M');
     req = db.keys(new ydn.db.IndexIterator('article', 'title', key_range), 10);
@@ -147,11 +147,11 @@ There are two type of iterators: key iterator and value iterator. Value iterator
       }
     );
 
-It should be note that, above query is not possible in key range query syntax.
+Note that the above query is not possible using the key range query syntax.
 
 ### Iterations
 
-There are situation that index-based query is not possible or we simply don't want to storage cost of index. In this case all records in the store must be enumerate to find the desire result. This is achieved by using [open method](/api/ydn/db/storage.html#open).
+There are situations that index-based queries are not possible or you simply don't want the storage cost of an index. In these cases, all records in the store must be enumerated to find the desired result using the [open method](/api/ydn/db/storage.html#open):
 
     var count = 0;
     req = db.open(function(cursor) {
@@ -163,8 +163,8 @@ There are situation that index-based query is not possible or we simply don't wa
       console.log(count + ' authors found.');
     }, 'readonly');
 
-Opening can be invoked by `'readonly'` or `'readwrite'` mode.
+Opening can be invoked in `'readonly'` or `'readwrite'` mode.
 
-In general, query involves filtering multiple fields, paging and the results are to be sorted. Such complex queries are solved by using index, [compound index](compound-index.html) and algorithmic [key joining](key-joining.html).
+In general, queries involves filtering multiple fields, paging results, and choosing how results will be sorted. Complex queries are solved by using index, [compound index](compound-index.html) and algorithmic [key joining](key-joining.html) techniques.
 
 {% endwrap %}
