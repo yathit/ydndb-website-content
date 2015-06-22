@@ -127,7 +127,7 @@ The above SQL query is translated to a key range query as:
       }
     );
     
-The first two arguments in KeyRange constructor is its lower and upper bounds. The last two arguments indicate the bound is close (`false`) or open (`true`) to respective bound value. Close bound include the boundary value itself in the key range where as open bound is not.   
+The first two arguments in KeyRange constructor are its lower and upper bounds. The last two arguments indicate the bound is closed (`false`) or open (`true`) for the respective bounds. A closed bound includes the boundary value itself in the key range whereas an open bound does not.   
 
 ### Iterators
 
