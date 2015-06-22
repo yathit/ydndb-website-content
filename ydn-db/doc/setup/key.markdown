@@ -32,56 +32,56 @@ To retrieve all keys within a certain interval, you can construct a key range as
 
 <table class="gridtable">
   <thead>
-    <tr>
-      <th>Range</th>
-      <th>Code</th>
-    </tr>
+  <tr>
+    <th>Range</th>
+    <th>Code</th>
+  </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>All keys ? <strong>x</strong></td>
-      <td><code>ydn.db.KeyRange.upperBound(<strong>x</strong>)</code> </td>
-    </tr>
-    <tr>
-      <td>All keys &lt; <strong>x</strong></td>
-      <td><code>ydn.db.KeyRange.upperBound(<strong>x</strong>, true) </code>
-      </td>
-    </tr>
-    <tr>
-      <td>All keys ? <strong>y</strong></td>
-      <td><code>ydn.db.KeyRange.lowerBound(<strong>y</strong>)</code> </td>
-    </tr>
-    <tr>
-      <td>All keys &gt; <strong>y</strong></td>
-      <td><code>ydn.db.KeyRange.lowerBound(<strong>y</strong>, true)</code></td>
-    </tr>
-    <tr>
-      <td>All keys ? <strong>x</strong> &amp;&amp; ? <strong>y</strong></td>
-      <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>)</code></td>
-    </tr>
-    <tr>
-      <td>All keys &gt; <strong>x</strong> &amp;&amp;&lt; <strong>y</strong></td>
-      <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>,
-          true, true)</code></td>
-    </tr>
-    <tr>
-      <td>All keys &gt; <strong>x</strong> &amp;&amp; ? <strong>y</strong></td>
-      <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>,
-          true, false)</code></td>
-    </tr>
-    <tr>
-      <td>All keys ? <strong>x</strong> &amp;&amp;&lt; <strong>y</strong></td>
-      <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>,
-          false, true)</code></td>
-    </tr>
-    <tr>
-      <td>The key = <strong>z</strong></td>
-      <td><code>ydn.db.KeyRange.only(<strong>z</strong>)</code></td>
-    </tr>
-    <tr>
-      <td>All (string or array) keys start with <strong>a</strong></td>
-      <td><code>ydn.db.KeyRange.starts(<strong>a</strong>)</code></td>
-    </tr>
+  <tr>
+    <td>All keys ? <strong>x</strong></td>
+    <td><code>ydn.db.KeyRange.upperBound(<strong>x</strong>)</code> </td>
+  </tr>
+  <tr>
+    <td>All keys &lt; <strong>x</strong></td>
+    <td><code>ydn.db.KeyRange.upperBound(<strong>x</strong>, true) </code>
+    </td>
+  </tr>
+  <tr>
+    <td>All keys ? <strong>y</strong></td>
+    <td><code>ydn.db.KeyRange.lowerBound(<strong>y</strong>)</code> </td>
+  </tr>
+  <tr>
+    <td>All keys &gt; <strong>y</strong></td>
+    <td><code>ydn.db.KeyRange.lowerBound(<strong>y</strong>, true)</code></td>
+  </tr>
+  <tr>
+    <td>All keys &ge; <strong>x</strong> &le; <strong>y</strong></td>
+    <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>)</code></td>
+  </tr>
+  <tr>
+    <td>All keys &gt; <strong>x</strong> &lt; <strong>y</strong></td>
+    <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>,
+      true, true)</code></td>
+  </tr>
+  <tr>
+    <td>All keys &gt; <strong>x</strong> &ge; <strong>y</strong></td>
+    <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>,
+      true, false)</code></td>
+  </tr>
+  <tr>
+    <td>All keys &le; <strong>x</strong> &lt; <strong>y</strong></td>
+    <td><code>ydn.db.KeyRange.bound(<strong>x</strong>, <strong>y</strong>,
+      false, true)</code></td>
+  </tr>
+  <tr>
+    <td>The key = <strong>z</strong></td>
+    <td><code>ydn.db.KeyRange.only(<strong>z</strong>)</code></td>
+  </tr>
+  <tr>
+    <td>All (string or array) keys start with <strong>a</strong></td>
+    <td><code>ydn.db.KeyRange.starts(<strong>a</strong>)</code></td>
+  </tr>
   </tbody>
 </table>
 

@@ -121,11 +121,13 @@ The key range is essentially the WHERE clause in SQL. See [key range constructio
 
 The above SQL query is translated to a key range query as:
 
-    var kr = ydn.db.KeyRange(946656000000, 978278400000, false, true);
+    var kr = new ydn.db.KeyRange(946656000000, 978278400000, false, true);
     db.values('article', 'publish', kr).always(function(record) {
         console.log(record);
       }
     );
+    
+The first two arguments in KeyRange constructor is its lower and upper bounds. The last two arguments indicate the bound is close (`false`) or open (`true`) to respective bound value. Close bound include the boundary value itself in the key range where as open bound is not.   
 
 ### Iterators
 
