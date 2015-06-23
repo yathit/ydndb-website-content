@@ -19,12 +19,12 @@ notes:
 
 {% wrap content %}
 
-In previous article, [key-joining algorithms](key-joining.html) are explained. We will use these algorithm for joining multiple tables.
+[Key-joining algorithms](key-joining.html) were explained in the previous article. We will use these algorithm for joining multiple tables.
 
 
 ### Sample data
 
-Let us load very simple database that is used by Chris Date and Hugh Darwen throughout their books (e.g., [An Introduction To Database Systems](http://c2.com/cgi/wiki?AnIntroductionToDatabaseSystems) and [The Third Manifesto](http://en.wikipedia.org/wiki/The_Third_Manifesto)) for examples.
+Load the very simple database used by Chris Date and Hugh Darwen for examples throughout their books (e.g., [An Introduction To Database Systems](http://c2.com/cgi/wiki?AnIntroductionToDatabaseSystems) and [The Third Manifesto](http://en.wikipedia.org/wiki/The_Third_Manifesto)).
 
     var schema = {
       stores: [{
@@ -92,17 +92,17 @@ Let us load very simple database that is used by Chris Date and Hugh Darwen thro
     	{SID: "S4", PID: "P5", QTY: 400}
     ]);
 
-## Join operation with full table scan
+## Join operation using a full table scan
 
-A full table scan looks through all of the rows in a table – one by one – to find the data that a query is looking for. Obviously, this can cause very slow queries if you have a table with a lot of rows – just imagine how performance-intensive a full table scan would be on a table with millions of rows. Using an index can help prevent full table scans.
+A full table scan looks through all of the rows in a table – one by one – to find the data that a query is looking for. Obviously, this can cause very slow queries if you have a table with a lot of rows – just imagine how performance-intensive a full table scan would be on a table with millions of rows.Using an index can help prevent full table scans.
 
-There are some scenarios in which a full table scan will still be performed even though an index is present on that table. Let’s go through some of those scenarios.
+There are some scenarios in which a full table scan will still be performed even though an index is present on that table. Here are some of those scenarios:
 
-1. One common scenario is we don't want to index the fields. Full table scan does not require indexing.
-2. Use regular expression or complex filtering in query. For example a query like `WHERE NAME LIKE ‘%INTERVIEW%` cannot be used index.
-3. Query with multiple ranges.
+1.  You choose not to index the fields. A full table scan does not require indexing.
+2.  You use regular expressions or complex filtering in the query.  For example, a query like `WHERE NAME LIKE ‘%INTERVIEW%` cannot be use an index.
+3.  You query with multiple ranges.
 
-Let us see how to use full table scan in YDN-DB for query `SELECT * FROM Supplier, Part WHERE Supplier.CITY = Part.CITY`. [`db.scan`](http://dev.yathit.com/api/ydn/db/storage.html#scan) method is used to scan multiple tables at the same time. The following code snippet use nested loop, in which inner table do a full table scan for each outer table record.
+This example uses a full table scan in YDN-DB for the query `SELECT * FROM Supplier, Part WHERE Supplier.CITY = Part.CITY`.  The[`db.scan`](http://dev.yathit.com/api/ydn/db/storage.html#scan) method is used to scan multiple tables at the same time. The code snippet uses a nested loop, in which inner table does a full table scan for each outer table record:
 
 
     var iter_supplier = new ydn.db.ValueIterator('Supplier');
@@ -125,7 +125,7 @@ Let us see how to use full table scan in YDN-DB for query `SELECT * FROM Supplie
 
 ## Index base joining
 
-We can use index for more efficient joining.
+We can use indexes for more efficient joining.  Here is the same query with indexes:
 
     var iter_supplier = new ydn.db.IndexValueIterator('Supplier', 'CITY');
     var iter_part = new ydn.db.IndexValueIterator('Part', 'CITY');
@@ -147,7 +147,7 @@ We can use index for more efficient joining.
       }
     }, [iter_supplier, iter_part]);
 
-Notice that we only need scanning matching record. The size of records in these two table does not matter, only matching record size are relevant. Index base joining are very scalable.
+Notice that we only need to scan through the indexes once to find matching records and we do not scan the table.  The total size of records in these two tables does not matter, only the matching records are relevant. The index base joining technique is very scalable.
 
 
 
