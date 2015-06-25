@@ -39,6 +39,7 @@ Encrypted store must use out-of-line key and must not use key generator as illus
         Encryption: {
           expiration: 1000*15, // optional data expiration in ms.
           encryptKey: false,   // optional encrypt primary key
+          method: 'rc4', // default is 'acs-cbc'
           secrets: [{
             name: 'aaaa',
             key: 'aYHF6vfuGHpfWS*eRLrPQxZjSó~É5c6HjCscqDqRtZasp¡JWSMGaW'
@@ -85,5 +86,9 @@ Multiple encryption keys can be provided. Only the first key is used for encrypt
 See demo application to try out.
 
 Additional source code is available upon request.
+
+## Crypto module
+
+[Crypto module](/api/ydn/crypto/Cipher.html) can be used without ydn-db.
 
 {% endwrap %}
