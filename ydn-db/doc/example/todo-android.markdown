@@ -2,11 +2,11 @@
 layout: ydndb-article
 description: "NoSQL query"
 class: ydndb
-title: "Todo list (Android)"
-introduction: "Very simple example for using YDN-DB library."
+title: "Android App"
+introduction: "Very simple TODO list example for using YDN-DB library."
 article:
-  written_on: 2013-04-01
-  updated_on: 2014-04-28
+  written_on: 2014-04-28
+  updated_on: 2015-07-26
   order: 2
 collection: ydndb-example
 authors:

@@ -89,6 +89,12 @@ Additional source code is available upon request.
 
 ## Crypto module
 
-[Crypto module](/api/ydn/crypto/Cipher.html) can be used without ydn-db.
+
+[Crypto module](/api/ydn/crypto/Cipher.html) can be used without ydn-db, if record key is not necessary to be encrypted. Using crypto module outside of ydn-db provides more flexible usage. 
+
+[Crypto example](http://yathit.github.io/ydndb-demo/encrypt/crypto-example.html) demonstrates a simple use case for crypto module with ydn-db.
+
+[Crypto with index example](http://yathit.github.io/ydndb-demo/encrypt/crypto-with-index.html) demonstrates query meta data on encrypted record. Note meta data for index are expose of encrypted message.
+
 
 {% endwrap %}

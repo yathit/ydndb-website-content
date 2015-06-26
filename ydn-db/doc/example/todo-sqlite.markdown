@@ -1,9 +1,9 @@
 ---
 layout: ydndb-article
-description: "NoSQL query"
+description: "Sqliteplugin on Phonegap"
 class: ydndb
 title: "Sqliteplugin on Phonegap"
-introduction: "Very simple example for using YDN-DB library."
+introduction: "A simple example for using YDN-DB library with sqliteplugin in Android app."
 article:
   written_on: 2013-04-01
   updated_on: 2014-04-28
