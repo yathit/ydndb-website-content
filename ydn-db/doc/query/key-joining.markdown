@@ -3,7 +3,7 @@ layout: ydndb-article
 description: "NoSQL query"
 class: ydndb
 title: Key joining
-introduction: "Key joining is not build into IndexedDB API."
+introduction: "Filtering, not key joining, is built into the IndexedDB API."
 article:
   written_on: 2013-04-01
   updated_on: 2014-04-28
@@ -20,9 +20,9 @@ g_comments_href:
 
 {% wrap content %}
 
-Filtering is, in fact, joining on primary key. The join process will scan index keys of desire filter and the matching primary keys are result. Numerous join algorithms can be found in [database books](#references) and review articles.
+Filtering is joining on the primary key. The join process will scan index keys, apply the desired filter, and return the matching primary keys as the result. Numerous join algorithms can be found in [database books](#references) and review articles.
  
-`scan` database operation method is used for key scanning process. The method accepts array of iterators (usually key iterator for performance) and a callback for each iteration. The callback is invoked with two argument of arrays having primary keys and secondary keys (record values if value iterator is used). The callback return an advancement array. Each advancement element refer to the respective iterator, `true` to continue next iteration, false to restart the iteration. If any value is given, it is taken as primary key and advance to it within current index key range. If a primary key larger than given key is found, it was returned on the first occurrence.
+The [`scan`](https://dev.yathit.com/api/ydn/db/storage.html#scan) database operation method is used for both key and value scanning processes.  It accepts a callback routine and array of iterators.  Key iterators are usually preferred over value iterators because of the increased performance.  The callback is invoked on each iteration and controls the advancement of the iterators.   The two arguments to the callbacks are arrays of the effective key array and the reference values of the iterators.   Or, of primary keys and secondary keys (record values if value iterator is used). The callback must return an advancement array where each advancement element refers to the respective iterator, `true` to continue next iteration, false to restart the iteration. If any value is given, it is taken as primary key and advance to it within current index key range. If a primary key larger than given key is found, it was returned on the first occurrence.
  
 In general, the callback can return an object having fields of advance, `next_index_keys` and `next_primary_keys`. All three fields are arrays, with each element represent to respective iterator. If element of next_index_keys is a valid key, the cursor advance to it. If element of `next_primary_keys` is given, the cursor advance to it within given index key or current index key. If element of advance array is given, it must be boolean. true refer to next position and false to rewind the iterator. If all three are given, it starts with rewind, positioning and advancement.
  
