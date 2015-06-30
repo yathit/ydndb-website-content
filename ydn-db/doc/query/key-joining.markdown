@@ -3,7 +3,7 @@ layout: ydndb-article
 description: "NoSQL query"
 class: ydndb
 title: Key joining
-introduction: "Filtering, not key joining, is built into the IndexedDB API."
+introduction: "IndexedDB API provide ordered enumeration of records in a given key range. Join query are left to application ligic to handle. "
 article:
   written_on: 2013-04-01
   updated_on: 2014-04-28
