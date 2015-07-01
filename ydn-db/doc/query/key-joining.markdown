@@ -3,7 +3,7 @@ layout: ydndb-article
 description: "NoSQL query"
 class: ydndb
 title: Key joining
-introduction: "IndexedDB API provide ordered enumeration of records in a given key range. Join query are left to application ligic to handle. "
+introduction: "The indexedDB API provides ordered enumeration of records in a given key range. Join queries are left to the application logic to handle."
 article:
   written_on: 2013-04-01
   updated_on: 2014-04-28
@@ -22,7 +22,7 @@ g_comments_href:
 
 Filtering is joining on the primary key. The join process will scan index keys, apply the desired filter, and return the matching primary keys as the result. Numerous join algorithms can be found in [database books](#references) and review articles.
  
-The [`scan`](https://dev.yathit.com/api/ydn/db/storage.html#scan) database operation method is used for both key and value scanning processes.  It accepts a callback routine and array of iterators.  Key iterators are usually preferred over value iterators because of the increased performance.  The callback is invoked on each iteration and controls the advancement of the iterators.   The two arguments to the callbacks are arrays of the effective key array and the reference values of the iterators.   Or, of primary keys and secondary keys (record values if value iterator is used). The callback must return an advancement array where each advancement element refers to the respective iterator, `true` to continue next iteration, false to restart the iteration. If any value is given, it is taken as primary key and advance to it within current index key range. If a primary key larger than given key is found, it was returned on the first occurrence.
+The [`db.scan`](https://dev.yathit.com/api/ydn/db/storage.html#scan) database operation method is used for both key and value scanning processes.  It accepts a callback routine and array of iterators.  Key iterators are usually preferred over value iterators because of the increased performance.  The callback is invoked on each iteration and controls the advancement of the iterators. The first arguments to the callback is the array of effective index keys for the current iteration.  The second argument is the array of reference values:  primary keys if index iterators are used or record vlaues if avalue iterators are used.  The callback must return an array where each element refers to the advancement of the respective iterator: `true` to continue next iteration or `false` to restart the iteration. If any value is given, it is taken as primary key and advance to it within current index key range. If a primary key larger than given key is found, it was returned on the first occurrence.  If the entire return array is empty, `db.scan` completes.
  
 In general, the callback can return an object having fields of advance, `next_index_keys` and `next_primary_keys`. All three fields are arrays, with each element represent to respective iterator. If element of next_index_keys is a valid key, the cursor advance to it. If element of `next_primary_keys` is given, the cursor advance to it within given index key or current index key. If element of advance array is given, it must be boolean. true refer to next position and false to rewind the iterator. If all three are given, it starts with rewind, positioning and advancement.
  
@@ -32,7 +32,7 @@ Available algorithms can be found in [`ydn.db.algo`](/api/ydn/db/algo.html) modu
 
 A naive join algorithm iterates each iterator forming nested loops. And hence it is called nested-loop join algorithm.
   
-The following snippet filter 'license' field to 'SA' and 'publisher' to 'Nature'.
+The following snippet filters the `license` field to 'SA' and the `publisher` to 'Nature'.  
 
     match_keys = [];
     var nested_loop = function(keys, values) {
@@ -63,13 +63,13 @@ The following snippet filter 'license' field to 'SA' and 'publisher' to 'Nature'
       throw e;
     });
     
-The inner loop, publisher, iterate the number of licenses times. Whereas the outer loop, license iterate only once. The result is the same if we flip the loop order since the joins are commutative. However run time is not the same. This is the subject of query optimization.
+This first sets up the `nested_loop` callback and then uses `db.scan` with the two KeyRange filter iterators.  The callback advances and restarts the iterators in order to make an outer loop of the `license` index and an inner loop of the `publisher` index.  The `license` index iterates through only once, advancing only after iterating through the entire `publisher` index.  The result is the same if we flip the loop order since joins are commutative, but run time is not the same. This is the subject of query optimization.
   
-The inner loop result can be cached into the memory. This lead to hash merge algorithm.  
+The inner loop result could be cached into the memory. This leads to hash merge algorithm.  
   
 ### Sorted-merge join
   
-In the above example, we noticed that the results of both iterators are sorted by ascending order of primary key since we held constant on index key. If the results of all filters are sorted, we can advance the iterator skipping keys not in the filter. This make sorted join algorithm independent of number of records in the object store.   
+In the above example, we notice that the results of both iterators are sorted in ascending order of the primary key since we held the index key constant. If the results of all filters are sorted, we can advance the iterator skipping keys not in the filter. This makes the sorted join algorithm speed independent of number of records in the object store.   
 
     match_keys = [];
     var sorted_join = function(keys, values) {
@@ -88,7 +88,7 @@ In the above example, we noticed that the results of both iterators are sorted b
       }
     };
     
-    license_filter.reset();
+    license_filter.reset();   // reusing the filters from the previous example
     publisher_filter.reset();
     var req = db.scan(sorted_join, [license_filter, publisher_filter]);
     req.then(function() {
@@ -99,13 +99,13 @@ In the above example, we noticed that the results of both iterators are sorted b
       throw e;
     });
     
-Notice that sorted merge out perform nested loop in order magnitude. Using naive nested loop join in a practical web app is catastrophic.
+There is no nested loop; both indexes are iterated through once.  Notice that the sorted-merge join outperforms the nested-loop join by an order of magnitude. Using a naive nested-loop join in a practical web app is catastrophic.
  
- We can limit the result by existing the loop any by returning empty array to the iteration callback. Iterators are resume if use again. That is why we need to reset the iterators since they haven been used in nested loop. This how paging is handle in scanning.
+We can limit the result size and exit the loop by returning an empty array to the iteration callback. Iterators are resumed if used again, which is how paging is handled in scanning.  It is also why we needed to reset the iterators after they we used int the nested-loop join example.
  
- The result of sorted merge join is sorted by primary key. To sort by a specific column field other than primary key, a zigzag merge join algorithm is used. 
+The result of sorted-merge join is sorted by primary key. To sort by a specific column field other than primary key, a zigzag-merge join algorithm is used. 
     
-### Zigzag merge join
+### Zigzag-merge join
       
 In sorted merge join, effective key is held constant while joining sorted list of values. In Zigzag merge join, the effective itself comprise both parts. The first part, known as pre-fix is held constant consisting what we want to be filtered. The second parts, known as post-fix is sorted value. The composite index is used to construct post-fix and prefix as required by the query. 
 
