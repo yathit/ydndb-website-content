@@ -19,11 +19,11 @@ authors:
 
 [node-webkit](https://github.com/rogerwang/node-webkit) is an app runtime based on [Chromium](http://www.chromium.org/) and [node.js](http://nodejs.org/). You can write native apps in HTML and JavaScript with node-webkit. It also lets you call Node.js modules directly from the DOM and enables a new way of writing native applications with all Web technologies.
 
-Checkout pre-build [binary application files](http://ydn-db-d1.storage.googleapis.com/nw-todo/YDN-DB-Todo-0.1.0.zip) for Windows and OS X.
+Checkout pre-built [binary application files](http://ydn-db-d1.storage.googleapis.com/nw-todo/YDN-DB-Todo-0.1.0.zip) for Windows and OS X.
 
-#### Bundling data to load into database
+### Loading bundled data into the database
 
-It is commonly required that to ship some data together with the application. We can fetch require files from the server, but to work on offline scenario, we can bundle data files together with the application. The follow code snippet shows loading JSON data from the resource file to YDN-DB database.
+Applications often ship with some data.  We can fetch required files from the server or we can bundle the data files together with the application.  The following code snippet shows loading JSON data from a resource file into a YDN-DB database.
 
      var fs = require('fs');
      var obj;
